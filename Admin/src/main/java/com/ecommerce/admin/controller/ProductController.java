@@ -91,4 +91,30 @@ public class ProductController {
         }
         return "redirect:/products";
     }
+
+    @GetMapping("/enable-product/{id}")
+    public String enableProduct(@PathVariable("id") Long id,
+                                RedirectAttributes redirectAttributes) {
+        try{
+            productService.enableById(id);
+            redirectAttributes.addFlashAttribute("success", "Enable product successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("failed", "Can not enable product");
+        }
+         return "redirect:/products";
+    }
+
+    @GetMapping("/delete-product/{id}")
+    public String deleteProduct(@PathVariable("id") Long id,
+                                RedirectAttributes redirectAttributes) {
+        try{
+            productService.deleteById(id);
+            redirectAttributes.addFlashAttribute("success", "Delete product successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("failed", "Can not delete product");
+        }
+        return "redirect:/products";
+    }
 }

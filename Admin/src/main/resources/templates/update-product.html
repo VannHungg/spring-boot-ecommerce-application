@@ -52,7 +52,9 @@
                                                     <option th:value = "null">-select-</option>
                                                     <option th:each = "category : ${categories}"
                                                             th:value = "${category.id}"
-                                                            th:text = "${category.name}">
+                                                            th:text = "${category.name}"
+                                                            th:selected="${product.category.id == category.id} ? 'selected' : ''"
+                                                    >
                                                     </option>
                                                 </select>
                                             </div>
@@ -85,7 +87,8 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="image">Product image</label>
                                             <div class="col-md-4">
-                                                <input id="image" name="imageProduct" class="input-file" type="file">
+                                                <img class="" style="height: 90px;" th:src="'data:image/jpeg;base64,' + *{image}"/>
+                                                <input id="image" name="imageProduct" class="input-file mt-3" type="file">
                                             </div>
                                         </div>
 
